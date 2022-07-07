@@ -38,7 +38,7 @@ Because we consider the coins in order, we will only count one order of coins.
 # [Removing Digits](https://cses.fi/problemset/task/1637)
 
 ### `dp[i] = minimum # of operations to go from i to 0`
-When considering a number i, for each digit in the decimal representation of i, we can try to remove it. The transition is therefore: dp[i] =  min~d∈digits(i)~ dp[i-d]. 
+When considering a number i, for each digit in the decimal representation of i, we can try to remove it. The transition is therefore: dp[i] = min<sub>d∈digits(i)</sub> dp[i-d]. 
 We initialize dp[0] = 0.
 ### Time Complexity : ***O(n)***   
 <br>
@@ -50,7 +50,7 @@ We say there is one way to reach (0,0), dp[0][0] = 1.
 
 When we are at some position with `a[i] = .`, we came either from the left or top. So the number of ways to get to there is the number of ways to get to the position above, plus the number of ways to get to the position to the left. 
 We also need to make sure that the number of ways to get to any position with `a[i] = #` is 0.
-### Time Complexity : ***O(n^2^)***   
+### Time Complexity : ***O(n<sup>2</sup>)***   
 <br>
 
 # [Book Shop](https://cses.fi/problemset/task/1158)
