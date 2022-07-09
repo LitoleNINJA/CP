@@ -63,3 +63,38 @@ Or we bought it, leaving j-price[i-1] money for the other i-1 books, and giving 
 Thus, buying the i'th book gives dp[i-1][j-price[i-1]] + pages[i-1] pages.
 ### Time Complexity : ***O(n . x)***   
 <br>
+
+# [Array Description](https://cses.fi/problemset/task/1746)
+
+### `dp[i][j] =  # of ways to fill the array upto index i, if a[i] = j`
+We treat i = 0 separately. Either `a[0] = 0`, so we can replace it by anything (i.e `dp[0][j] = 1 for all j`). Otherwise a[0] = v ≠ 0, so that dp[0][v] = 1 is the only allowed value.
+
+Now to the other indices i > 0. If a[i] = 0, we can replace it by any value. However, if we replace it by v, the previous value must be either v-1, v or v+1. 
+Thus the number of ways to fill the array up to i, is the sum of the previous value being v-1, v and v+1. If a[i] = v from the input, only dp[i][v] is allowed (i.e `dp[i][j] = 0 if j ≠ v`). 
+Still `dp[i][j] = dp[i-1][j-1] + dp[i-1][j] + dp[i-1][j+1]`
+### Time Complexity : ***O(n . m)***   
+<br>
+
+# [Edit Distance](https://cses.fi/problemset/task/1639)
+
+### `dp[i][j] =  minimum # of moves to change first i chars of a to first j chars of b`
+When we calculate dp[i][j], there are four possibilities to consider for the rightmost operation. We check all of them and take the cheapest one.
+
+1. We deleted character a[i-1]. This took one operation, and we still need to change a[:i-1] to b[:j]. So this costs 1 + dp[i-1][j] operations.
+
+2. We added character b[j-1] to the end of a[:i]. This took one operation, and we still need to change a[:i] to b[:j-1]. So this costs 1 + dp[i][j-1] operations.
+
+3. We replaced a[i-1] with b[j-1]. This took one operation, and we still need to change a[:i-1] to b[:j-1]. So this costs 1 + dp[i-1][j-1] operations.
+
+4. a[i-1] was already equal to b[j-1], so we just need to change a[:i-1] to b[:j-1]. That takes dp[i-1][j-1] operations. This possibility can be viewed as a replace operation where we don't actually need to replace a[i-1].
+### Time Complexity : ***O(|a| . |b|)***   
+<br>
+
+# [Rectangle Cutting](https://cses.fi/problemset/task/1744)
+
+### `dp[i][j] =  # of cuts needed to make a ixj rect into square`
+Consider a `w×h` piece. If it is already square (`w = h`), we need 0 cuts. Otherwise, we need to make the first cut either horizontally or vertically. 
+Say we make it horizontally, then we can cut at any position `1,2,..,h-1`. If we cut at position k, then we are left with two pieces of sizes `w×k` and `w×h − k`. 
+We can look up the number of moves to reduce these to squares in the dp array. We loop over all possibilities k and take the best one. Similarly for vertical cuts.
+### Time Complexity : ***O(a<sup>2</sup>b . ab<sup>2</sup>)***   
+<br>
