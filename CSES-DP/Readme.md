@@ -98,3 +98,12 @@ Say we make it horizontally, then we can cut at any position `1,2,..,h-1`. If we
 We can look up the number of moves to reduce these to squares in the dp array. We loop over all possibilities k and take the best one. Similarly for vertical cuts.
 ### Time Complexity : ***O(a<sup>2</sup>b . ab<sup>2</sup>)***   
 <br>
+
+# [Money Sums](https://cses.fi/problemset/task/1745)
+
+### `dp[i][j] =  1 if it is possible to make the sum j using the first i coins`
+It is possible to make j with the first i coins, if either it was possible with the first i-1 coins, or we chose the i'th coin, and it was possible to make j — <value of i'th coin> using the first i-1 coins.
+
+Note that we only need to consider sums up to `1000 ⋅ n`, since we can't make more than that using n coins of value ≤ 1000.
+### Time Complexity : ***O(n<sup>2</sup> . max<sub>a(i)</sub>)***   
+<br>
